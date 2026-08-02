@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="eAppointmenServer.Infrastructure/eAppointmenServer.Infrastructure.csproj" Id="5e1b7960-cd4c-41a5-82ba-bbea78b48ffb" />
+  <Project Path="eAppointment.Application/eAppointmentServer.Application.csproj" Id="a411f168-6982-42b8-9bff-05767c3f470a" />
+  <Project Path="eAppointmentServer.Domain/eAppointmentServer.Domain.csproj" />
+  <Project Path="eAppointmentServer.WebAPI/eAppointmentServer.WebAPI.csproj" Id="1f45efa4-b828-49fd-898d-fbbd0f30eeda" />
+</Solution>
