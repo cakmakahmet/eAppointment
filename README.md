@@ -195,7 +195,8 @@ Bu proje geliştirilirken aşağıdaki konular üzerinde çalışılmıştır:
 
 Bu proje ticari kullanım amacıyla değil, eğitim ve kişisel gelişim amacıyla hazırlanmıştır.
 
-Angular ve .NET 8 kullanılarak uçtan uca bir full stack uygulamanın nasıl geliştirildiğini öğrenmek için oluşturulmuştur.
+Angular ve .NET 8 kullanılarak uçtan uca bir full stack uygulamanın nasıl geliştirildiğini öğrenmek için oluşturulmuştur. Proje boyunca oluşturulan dokümana aşağıdaki linkten erişilebilir.
+https://1drv.ms/o/c/66b412be0f8d1c79/IgDyakG0MhGTRp8vgod64IpVAUJD5XkpBPbifCxnwrQ_OYU?e=O0uqod
 
 ## Geliştirici
 
