@@ -1,21 +1,31 @@
-# eAppointment – Randevu Yönetim Sistemi
+# Stock Management – Stok Yönetim Sistemi
 
-Bu proje, **Angular ve .NET 8 ile Full Stack Web Geliştirme kursu** kapsamında geliştirilmiş bir hastane randevu yönetim uygulamasıdır.
+Bu proje, ürün, müşteri, kullanıcı, fatura ve stok işlemlerinin tek bir sistem üzerinden yönetilmesini sağlayan full stack bir stok yönetim uygulamasıdır.
 
-Projenin amacı; Angular ile frontend geliştirme, .NET Web API oluşturma, veritabanı işlemleri, JWT ile kullanıcı girişi, yetkilendirme ve CRUD işlemleri gibi temel full stack konularını uygulamalı olarak öğrenmektir.
+Projenin amacı; gerçek bir stok yönetim senaryosunu Clean Architecture yapısı içerisinde geliştirmek, Angular ile kullanıcı arayüzü oluşturmak, .NET Web API ile iş kurallarını yönetmek ve rol bazlı güvenli bir sistem oluşturmaktır.
 
 ## Projede Bulunan Özellikler
 
 - Kullanıcı giriş sistemi
 - JWT ile kimlik doğrulama
 - Rol bazlı yetkilendirme
+- Kullanıcı kayıt sistemi
 - Kullanıcı ekleme, güncelleme ve silme
-- Doktor ekleme, güncelleme ve silme
-- Hasta ekleme, güncelleme ve silme
-- Randevu oluşturma
-- Randevu güncelleme ve silme
-- Doktorların bölüme göre listelenmesi
-- Doktora ait randevuların takvim üzerinde gösterilmesi
+- Ürün ekleme, güncelleme ve silme
+- Ürün adına ve barkoda göre arama
+- Barkod formatı ve benzersizlik kontrolü
+- Müşteri ekleme, güncelleme ve silme
+- Alış ve satış faturası oluşturma
+- Fatura güncelleme ve silme
+- Fatura detaylarına birden fazla ürün ekleme
+- Alış faturasında otomatik stok artırma
+- Satış faturasında otomatik stok azaltma
+- Satış işlemlerinde stok yeterlilik kontrolü
+- Fatura güncelleme işleminde eski stok etkisini geri alma
+- Fatura silme işleminde stok hareketini geri çevirme
+- Kullanıcı rolündeki müşterinin yalnızca kendi faturalarını görmesi
+- Faturaları tarih ve tutara göre sıralama
+- Finansal özet raporlarının görüntülenmesi
 - Form doğrulama işlemleri
 - Başarılı ve hatalı işlemler için bildirim mesajları
 - Swagger üzerinden API endpointlerini test etme
@@ -24,180 +34,52 @@ Projenin amacı; Angular ile frontend geliştirme, .NET Web API oluşturma, veri
 
 ### Backend
 
-- .NET 8 Web API
+- .NET 10 Web API
 - C#
+- Clean Architecture
 - Entity Framework Core
-- SQL Server LocalDB
+- SQL Server
 - ASP.NET Core Identity
 - JWT Authentication
 - MediatR
 - CQRS
 - AutoMapper
-- FluentValidation
+- Generic Repository
+- Unit of Work
 - TS.Result
 - Swagger
+- Newtonsoft.Json
 
 ### Frontend
 
-- Angular
+- Angular 22
 - TypeScript
 - HTML
 - CSS
-- Bootstrap
-- DevExtreme
-- SweetAlert2
+- PrimeNG
+- Reactive Forms
 - RxJS
 - JWT Decode
+- HTTP Interceptor
+- Auth Guard
+- Role Guard
 
 ## Proje Yapısı
 
 ```text
-eAppointment
+StockManagementARCA
 │
-├── eAppointmentClient
+├── StockManagementARCA
 │   └── Angular frontend projesi
 │
-└── eAppointmentServer.Domain
-    ├── eAppointmentServer.Domain
-    ├── eAppointment.Application
-    ├── eAppointmenServer.Infrastructure
-    └── eAppointmentServer.WebAPI
-```
-
-## Backend Katmanları
-
-### Domain
-
-Entity sınıfları, enumlar ve repository arayüzleri bu katmanda bulunmaktadır.
-
-### Application
-
-Command, Query, Handler, Mapping, Validation ve servis arayüzleri bu katmanda bulunmaktadır.
-
-### Infrastructure
-
-Veritabanı bağlantısı, repository sınıfları, migration dosyaları ve JWT servisi bu katmanda bulunmaktadır.
-
-### WebAPI
-
-Controller sınıfları, uygulama ayarları ve API başlangıç yapılandırmaları bu katmanda bulunmaktadır.
-
-## Projeyi Çalıştırma
-
-Projeyi çalıştırmadan önce bilgisayarınızda aşağıdaki araçların kurulu olması gerekir:
-
-- .NET 8 SDK
-- Node.js
-- npm
-- Angular CLI
-- SQL Server veya SQL Server LocalDB
-
-## Backend Projesini Çalıştırma
-
-Terminal üzerinden Web API klasörüne geçin:
-
-```bash
-cd eAppointmentServer.Domain/eAppointmentServer.WebAPI
-```
-
-Gerekli paketleri yükleyin:
-
-```bash
-dotnet restore
-```
-
-Projeyi çalıştırın:
-
-```bash
-dotnet run
-```
-
-API varsayılan olarak aşağıdaki adres üzerinden çalışmaktadır:
-
-```text
-https://localhost:7168
-```
-
-Swagger sayfası:
-
-```text
-https://localhost:7168/swagger
-```
-
-## Frontend Projesini Çalıştırma
-
-Yeni bir terminal açarak Angular projesine geçin:
-
-```bash
-cd eAppointmentClient
-```
-
-Gerekli paketleri yükleyin:
-
-```bash
-npm install
-```
-
-Angular projesini çalıştırın:
-
-```bash
-npm start
-```
-
-Alternatif olarak:
-
-```bash
-ng serve
-```
-
-Tarayıcı üzerinden aşağıdaki adrese gidin:
-
-```text
-http://localhost:4200
-```
-
-## Veritabanı
-
-Proje, SQL Server LocalDB kullanmaktadır.
-
-Veritabanı bağlantı ayarları aşağıdaki dosyada bulunmaktadır:
-
-```text
-eAppointmentServer.Domain/eAppointmentServer.WebAPI/appsettings.json
-```
-
-Migration işlemlerinden sonra veritabanı Entity Framework Core tarafından oluşturulmaktadır.
-
-## Projede Öğrenilen Konular
-
-Bu proje geliştirilirken aşağıdaki konular üzerinde çalışılmıştır:
-
-- Katmanlı mimari
-- RESTful API geliştirme
-- Angular ve Web API bağlantısı
-- Dependency Injection
-- Repository Pattern
-- CQRS ve MediatR
-- Entity Framework Core
-- Migration işlemleri
-- JWT oluşturma ve kullanma
-- Authentication ve Authorization
-- Angular Forms
-- Form validation
-- HTTP servisleri
-- Angular component yapısı
-- Pipe kullanımı
-- Takvim üzerinde randevu yönetimi
-- Hata yönetimi
-- Bildirim sistemleri
-
-## Projenin Amacı
-
-Bu proje ticari kullanım amacıyla değil, eğitim ve kişisel gelişim amacıyla hazırlanmıştır.
-
-Angular ve .NET 8 kullanılarak uçtan uca bir full stack uygulamanın nasıl geliştirildiğini öğrenmek için oluşturulmuştur. Proje boyunca oluşturulan dokümana aşağıdaki linkten erişilebilir.
-https://1drv.ms/o/c/66b412be0f8d1c79/IgDyakG0MhGTRp8vgod64IpVAUJD5XkpBPbifCxnwrQ_OYU?e=O0uqod
-
-## Geliştirici
-
-**Ahmet Melih Çakmak**
+├── StockManagementServer.Domain
+│   └── Entity, enum ve repository arayüzleri
+│
+├── StockManagementServer.Application
+│   └── Command, Query, Handler, Response ve iş kuralları
+│
+├── StockManagementServer.Infrastructure
+│   └── Veritabanı, repository ve servis implementasyonları
+│
+└── StockManagementWebAPI
+    └── Controller, endpoint ve uygulama ayarları
